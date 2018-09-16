@@ -1,0 +1,28 @@
+{
+  "name": "private-blockchain",
+  "version": "1.0.0",
+  "description": "A simplified, private blockchain created to help understand the data model behind blockchain.",
+  "main": "levelSandbox.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenj/private-blockchain.git"
+  },
+  "keywords": [
+    "javascript",
+    "leveldb",
+    "blockchain",
+    "udacity"
+  ],
+  "author": "brenj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brenj/private-blockchain/issues"
+  },
+  "homepage": "https://github.com/brenj/private-blockchain#readme",
+  "dependencies": {
+    "npm": "^6.4.1"
+  }
+}
