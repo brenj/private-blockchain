@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/brenj/private-blockchain#readme",
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "level": "^4.0.0",
     "npm": "^6.4.1"
   }
 }
