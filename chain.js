@@ -44,25 +44,20 @@ class Blockchain {
   }
 
   getBlock(blockHeight) {
-    // return object as a single string
-    // return JSON.parse(JSON.stringify(this.chain[blockHeight]));
+    return new Promise((resolve, reject) => {
+      this.api.getLevelDBData(blockHeight)
+        .then(block => resolve(JSON.parse(block)))
+        .catch(error => reject(error));
+    });
   }
 }
 
-const chain = new Blockchain();
-// chain.addBlock('Test Block').then((result) => {
-//   chainDataAPI.db.createReadStream()
-//     .on('data', function (data) {
-//       console.log(data.key, '=', data.value)
-//     })
-//     .on('error', function (err) {
-//       console.log('Oh my!', err)
-//     })
-//     .on('close', function () {
-//       console.log('Stream closed')
-//     })
-//     .on('end', function () {
-//       console.log('Stream ended')
-//     })
-// })
-// chain.getBlockHeight().then(height => console.log(height));
+// const blockchain = new Blockchain();
+// blockchain.addBlock('BLOCK #1').then(() => {
+//   blockchain.api.db.createReadStream()
+//     .on('data', (data) => {
+//       console.log(data.key, '=', data.value);
+//     });
+// });
+// blockchain.getBlockHeight().then(height => console.log(height));
+// blockchain.getBlock(0).then(block => console.log(block));
