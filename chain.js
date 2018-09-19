@@ -6,8 +6,12 @@ class Block {
     this.body = data;
     this.height = height;
     this.previousBlockHash = previousBlockHash;
-    this.time = new Date().getTime().toString().slice(0, -3);
-    this.hash = SHA256(JSON.stringify(this)).toString();
+    this.time = time || new Date().getTime().toString().slice(0, -3);
+    this.hash = hash || '';
+  }
+
+  getBlockHash() {
+    return SHA256(JSON.stringify(this)).toString();
   }
 }
 
