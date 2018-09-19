@@ -45,18 +45,43 @@ function addDataToLevelDB(value) {
   });
 }
 
-(function populateChainData(index) {
-  setTimeout(() => {
-    addDataToLevelDB('Testing data');
+function getChainHeight() {
+  let height = 0;
 
-    const nextIndex = index - 1;
-    if (nextIndex !== 0) {
-      populateChainData(nextIndex);
-    }
-  }, 100);
-}(10));
+  return new Promise((resolve, reject) => {
+    db.createKeyStream()
+      .on('data', () => {
+        height += 1;
+      })
+      .on('error', (error) => {
+        reject(error);
+      })
+      .on('close', () => {
+        resolve(height);
+      });
+  });
+}
+
+module.exports = {
+  addDataToLevelDB,
+  db,
+  getChainHeight,
+  getLevelDBData,
+};
+
+// (function populateChainData(index) {
+//   setTimeout(() => {
+//     addDataToLevelDB('Test data');
+
+//     const nextIndex = index - 1;
+//     if (nextIndex !== 0) {
+//       populateChainData(nextIndex);
+//     }
+//   }, 100);
+// }(10));
 
 // addLevelDBData('test', 'hi').then(result => console.log(result));
 // getLevelDBData('test')
 //   .then(result => console.log(result))
 //   .catch(error => console.log(error));
+// getChainHeight().then(height => console.log(height));
