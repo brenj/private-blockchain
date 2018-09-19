@@ -12,24 +12,25 @@ class Block {
 }
 
 class Blockchain {
-  // constructor() {
-  // }
+  constructor() {
+    this.api = chainDataAPI;
+  }
 
   addBlock(blockData) {
     return new Promise((resolve, reject) => {
       this.getBlockHeight().then((height) => {
         if (height === 0) {
           const genesisBlock = new Block('GENESIS');
-          chainDataAPI.addDataToLevelDB(genesisBlock).then(() => {
+          this.api.addDataToLevelDB(JSON.stringify(genesisBlock)).then(() => {
             const newBlock = new Block(blockData, 1, genesisBlock.hash);
-            chainDataAPI.addDataToLevelDB(newBlock)
+            this.api.addDataToLevelDB(JSON.stringify(newBlock))
               .then(() => resolve(newBlock))
               .catch(error => reject(error));
           });
         } else {
           this.getBlock(height).then((block) => {
             const newBlock = new Block(blockData, height + 1, block.hash);
-            chainDataAPI.addDataToLevelDB(newBlock)
+            this.api.addDataToLevelDB(JSON.stringify(newBlock))
               .then(() => resolve(newBlock))
               .catch(error => reject(error));
           });
@@ -39,7 +40,7 @@ class Blockchain {
   }
 
   getBlockHeight() {
-    return chainDataAPI.getChainHeight();
+    return this.api.getChainHeight();
   }
 
   getBlock(blockHeight) {
