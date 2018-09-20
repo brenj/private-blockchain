@@ -21,7 +21,7 @@ Install
 
 Test
 ----
-This codebase contains some quick integration tests. Populate a test blockchain, uncomment lines you wish to test, and run the relevant test file(s).
+This codebase contains some quick integration tests. To test you will need to populate a test blockchain, uncomment the lines you wish to test in the provided test files, and then run the test files.
 
 1. `node tests/integration/populateTestBlockchain.js`
 2. `node tests/integration/testBlockchain.js`
