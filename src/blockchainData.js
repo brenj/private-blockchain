@@ -81,7 +81,7 @@ function getChainData() {
 
 module.exports = {
   addDataToLevelDB,
-  db,
+  addLevelDBData,
   getLastBlockHeight,
   getChainData,
   getLevelDBData,
