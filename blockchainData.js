@@ -45,8 +45,8 @@ function addDataToLevelDB(value) {
   });
 }
 
-function getChainHeight() {
-  let height = 0;
+function getLastBlockHeight() {
+  let height = -1;
 
   return new Promise((resolve, reject) => {
     db.createKeyStream()
@@ -82,7 +82,7 @@ function getChainData() {
 module.exports = {
   addDataToLevelDB,
   db,
-  getChainHeight,
+  getLastBlockHeight,
   getChainData,
   getLevelDBData,
 };
@@ -102,5 +102,5 @@ module.exports = {
 // getLevelDBData('test')
 //   .then(result => console.log(result))
 //   .catch(error => console.log(error));
-// getChainHeight().then(height => console.log(height));
+// getLastBlockHeight().then(height => console.log(height));
 // getChainData().then(chainData => console.log(chainData));
