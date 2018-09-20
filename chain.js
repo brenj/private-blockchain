@@ -77,14 +77,38 @@ class Blockchain {
   validateBlock(blockHeight) {
     return new Promise((resolve, reject) => {
       this.getBlock(blockHeight)
-        .then((block) => {
-          const blockHash = block.hash;
+        .then(block => resolve(this.validateBlockData(block)))
+        .catch(error => reject(error));
+    });
+  }
 
-          // Reset hash to compare original data with existing data
-          const blockToValidate = block;
-          blockToValidate.hash = '';
+  validateChain() {
+    return new Promise((resolve, reject) => {
+      this.api.getChainData()
+        .then((chainData) => {
+          const chain = chainData.map((rawBlockData) => {
+            const blockData = JSON.parse(rawBlockData);
+            return new Block(
+              blockData.body, blockData.height,
+              blockData.previousBlockHash, blockData.time, blockData.hash);
+          });
 
-          resolve(blockToValidate.getBlockHash() === blockHash);
+          const hasAllValidBlocks = chain.every(block => (
+            this.validateBlockData(block)
+          ));
+
+          const hasAllValidPrevHashes = chain.every((block, index) => {
+            if (index < chain.length - 1) {
+              const blockHash = block.hash;
+              const previousHash = chain[index + 1].previousBlockHash;
+              return blockHash === previousHash;
+            } else {
+              // Skip last block
+              return true;
+            }
+          });
+
+          resolve(hasAllValidBlocks && hasAllValidPrevHashes);
         })
         .catch(error => reject(error));
     });
@@ -101,3 +125,4 @@ class Blockchain {
 // blockchain.getBlockHeight().then(height => console.log(height));
 // blockchain.getBlock(0).then(block => console.log(block));
 // blockchain.validateBlock(0).then(isValid => console.log(isValid));
+// blockchain.validateChain().then(isValid => console.log(isValid));
