@@ -83,6 +83,7 @@ module.exports = {
   addDataToLevelDB,
   db,
   getChainHeight,
+  getChainData,
   getLevelDBData,
 };
 
