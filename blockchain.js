@@ -98,6 +98,7 @@ class Blockchain {
             this.validateBlockData(block)
           ));
 
+          chain.sort((a, b) => a.height - b.height);
           const hasAllValidPrevHashes = chain.every((block, index) => {
             if (index < chain.length - 1) {
               const blockHash = block.hash;
