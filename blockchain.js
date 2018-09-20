@@ -25,6 +25,7 @@ class Blockchain {
     return new Promise((resolve, reject) => {
       this.getBlockHeight().then((height) => {
         if (height === -1) {
+          // -1 height indicates an empty chain
           const genesisBlock = new Block('GENESIS');
           genesisBlock.hash = genesisBlock.getBlockHash();
           this.api.addDataToLevelDB(JSON.stringify(genesisBlock))
