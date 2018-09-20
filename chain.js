@@ -27,16 +27,19 @@ class Blockchain {
         if (height === 0) {
           const genesisBlock = new Block('GENESIS');
           genesisBlock.hash = genesisBlock.getBlockHash();
-          this.api.addDataToLevelDB(JSON.stringify(genesisBlock)).then(() => {
-            const newBlock = new Block(blockData, 1, genesisBlock.hash);
-            newBlock.hash = newBlock.getBlockHash();
-            this.api.addDataToLevelDB(JSON.stringify(newBlock))
-              .then(() => resolve(newBlock))
-              .catch(error => reject(error));
-          });
+          this.api.addDataToLevelDB(JSON.stringify(genesisBlock))
+            .then(() => {
+              const newBlock = new Block(blockData, 1, genesisBlock.hash);
+              newBlock.hash = newBlock.getBlockHash();
+              this.api.addDataToLevelDB(JSON.stringify(newBlock))
+                .then(() => resolve(newBlock))
+                .catch(error => reject(error));
+            });
         } else {
-          this.getBlock(height).then((block) => {
-            const newBlock = new Block(blockData, height + 1, block.hash);
+          const lastBlockHeight = height - 1;
+          this.getBlock(lastBlockHeight).then((block) => {
+            const newBlock = new Block(
+              blockData, lastBlockHeight + 1, block.hash);
             newBlock.hash = newBlock.getBlockHash();
             this.api.addDataToLevelDB(JSON.stringify(newBlock))
               .then(() => resolve(newBlock))
