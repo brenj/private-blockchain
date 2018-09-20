@@ -5,7 +5,7 @@ About
 -----
 
 From Udacity:
-> Create your own private blockchain as you learn to architect a blockchain data model. The focus will be on the development > of a private chain of blocks which is cryptographically secure and immutable.
+> Create your own private blockchain as you learn to architect a blockchain data model. The focus will be on the development of a private chain of blocks which is cryptographically secure and immutable.
 
 Supporting courses:
 * Blockchain Data
@@ -19,10 +19,17 @@ Install
 -------
 1. `npm install`
 
+Test
+----
+This codebase contains some quick integration tests. Populate a test blockchain, uncomment lines you wish to test, and run the relevant test file(s).
+
+1. `node tests/integration/populateTestBlockchain.js`
+2. `node tests/integration/testBlockchain.js`
+3. `node tests/integration/testBlockchainData.js`
+
 Code Quality
 ------------
-This code base adheres to the [Airbnb JavaScript/React/JSX Style Guide](https://github.com/airbnb/javascript)  
-Use `npm run lint` to check syntax and style.
+This codebase adheres to the [Airbnb JavaScript/React/JSX Style Guide](https://github.com/airbnb/javascript)
 
 Code Organization (src)
 -----------------------
