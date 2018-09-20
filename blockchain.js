@@ -1,5 +1,5 @@
 const SHA256 = require('crypto-js/sha256');
-const chainDataAPI = require('./chainDataAPI.js');
+const blockchainData = require('./blockchainData.js');
 
 class Block {
   constructor(
@@ -18,7 +18,7 @@ class Block {
 
 class Blockchain {
   constructor() {
-    this.api = chainDataAPI;
+    this.api = blockchainData;
   }
 
   addBlock(blockData) {
