@@ -103,3 +103,4 @@ module.exports = {
 //   .then(result => console.log(result))
 //   .catch(error => console.log(error));
 // getChainHeight().then(height => console.log(height));
+// getChainData().then(chainData => console.log(chainData));
