@@ -66,6 +66,14 @@ class Blockchain {
     });
   }
 
+  validateBlockData(block) {
+    // Create original block (no hash) for comparison
+    const blockToValidate = new Block(
+      block.body, block.height, block.previousBlockHash, block.time);
+
+    return blockToValidate.getBlockHash() === block.hash;
+  }
+
   validateBlock(blockHeight) {
     return new Promise((resolve, reject) => {
       this.getBlock(blockHeight)
