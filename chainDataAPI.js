@@ -62,6 +62,23 @@ function getChainHeight() {
   });
 }
 
+function getChainData() {
+  const chainData = [];
+
+  return new Promise((resolve, reject) => {
+    db.createValueStream()
+      .on('data', (block) => {
+        chainData.push(block);
+      })
+      .on('error', (error) => {
+        reject(error);
+      })
+      .on('close', () => {
+        resolve(chainData);
+      });
+  });
+}
+
 module.exports = {
   addDataToLevelDB,
   db,
