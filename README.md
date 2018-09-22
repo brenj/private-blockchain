@@ -31,15 +31,17 @@ Code Quality
 ------------
 This codebase adheres to the [Airbnb JavaScript/React/JSX Style Guide](https://github.com/airbnb/javascript)
 
-Code Organization (src)
------------------------
+Code Organization 
+------------------
 ```console
 ├── README.md
+├── index.js
 ├── original_files
 │   ├── levelSandbox.js
 │   └── simpleChain.js
 ├── package.json
 ├── src
+│   ├── block.js
 │   ├── blockchain.js
 │   └── blockchainData.js
 └── tests
@@ -48,7 +50,7 @@ Code Organization (src)
         ├── testBlockchain.js
         └── testBlockchainData.js
 
-4 directories, 9 files
+4 directories, 11 files
 ```
 
 Grading (by Udacity)
@@ -56,8 +58,8 @@ Grading (by Udacity)
 
 Criteria                              |Highest Grade Possible  |Grade Recieved
 --------------------------------------|------------------------|--------------
-Configure LevelDB to persist dataset  |Meets Specifications    |
-Modify simpleChain.js functions       |Meets Specifications    |
-Modify validate functions             |Meets Specifications    |
-Modify getBlock() function            |Meets Specifications    |
-Modify getBlockHeight() function      |Meets Specifications    |
+Configure LevelDB to persist dataset  |Meets Specifications    |Meets Specifications
+Modify simpleChain.js functions       |Meets Specifications    |Meets Specifications
+Modify validate functions             |Meets Specifications    |Meets Specifications
+Modify getBlock() function            |Meets Specifications    |Meets Specifications
+Modify getBlockHeight() function      |Meets Specifications    |Meets Specifications
