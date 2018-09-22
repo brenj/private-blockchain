@@ -1,6 +1,6 @@
-const blockchain = require('../../src/blockchain.js');
+const Blockchain = require('../../src/blockchain.js');
 
-const testBlockchain = new blockchain.Blockchain();
+const testBlockchain = new Blockchain();
 
 testBlockchain.addBlock('TEST BLOCK').then(block => console.log(block));
 // testBlockchain.getBlockHeight().then(height => console.log(height));
