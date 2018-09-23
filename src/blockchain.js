@@ -8,7 +8,7 @@ class Blockchain {
 
   addBlock(blockData) {
     return new Promise((resolve, reject) => {
-      this.getBlockHeight().then((height) => {
+      this.getLastBlockHeight().then((height) => {
         if (height === -1) {
           // -1 height indicates an empty chain
           const genesisBlock = new Block('GENESIS');
@@ -34,7 +34,7 @@ class Blockchain {
     });
   }
 
-  getBlockHeight() {
+  getLastBlockHeight() {
     return this.api.getLastBlockHeight();
   }
 
